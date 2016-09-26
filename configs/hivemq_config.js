@@ -1,2 +1,2 @@
-websocketserver = '139.59.232.51';
+websocketserver = window.location.host;
 websocketport = 9001;

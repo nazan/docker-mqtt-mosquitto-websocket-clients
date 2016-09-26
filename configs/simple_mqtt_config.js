@@ -1,5 +1,5 @@
 // host = '172.16.153.122';	// hostname or IP address
-host = '139.59.232.51';	// hostname or IP address
+host = window.location.host;	// hostname or IP address
 // host = '172.16.153.110';	// hostname or IP address
 port = 9001;
 topic = '#';		// topic to subscribe to
