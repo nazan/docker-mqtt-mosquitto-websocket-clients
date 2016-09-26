@@ -15,3 +15,9 @@ mosquitto:
   ports:
     - "9001:9001"
     - "1883:1883"
+nodered:
+  image: nodered/node-red-docker
+  links:
+    - mosquitto
+  ports:
+    - "1880:1880"
