@@ -1,11 +1,12 @@
 # docker-mqtt-mosquitto-websocket-clients
 mosquitto mqtt broker with websocket &amp; mqtt web clients
 
+
     $ git clone https://github.com/cmmakerclub/docker-mqtt-mosquitto-websocket-clients --recursive
     $ cd docker-mqtt-mosquitto-websocket-clients
     $ docker-compose up -d
 
-Manual update submodle
+Manual initial submodules
 
     $ git clone https://github.com/cmmakerclub/docker-mqtt-mosquitto-websocket-clients
     $ cd docker-mqtt-mosquitto-websocket-clients
