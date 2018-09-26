@@ -30,6 +30,8 @@ services:
   nodered:
     #image: nodered/node-red-docker
     image: com.coloranomaly.xyz/node-red-with-ext
+    volumes:
+      - $PWD/nodered-data:/data
     links:
       - mosquitto
     ports:
