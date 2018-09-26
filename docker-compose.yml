@@ -1,23 +1,36 @@
-lighttpd:
-  image: jojomi/lighttpd-static
-  volumes:
-    - $PWD/www:/var/www
-    - $PWD/configs/hivemq_config.js:/var/www/hivemq-mqtt-web-client/config.js
-    - $PWD/configs/simple_mqtt_config.js:/var/www/simple-mqtt-websocket-example/config.js
-  ports:
-    - "80:80"
-  links:
-    - mosquitto
-mosquitto:
-  image: nazt/mosquitto:1.4.9
-  volumes:
-    - $PWD/configs/mosquitto.conf:/mosquitto/mosquitto.conf
-  ports:
-    - "9001:9001"
-    - "1883:1883"
-nodered:
-  image: nodered/node-red-docker
-  links:
-    - mosquitto
-  ports:
-    - "1880:1880"
+version: '2'
+
+services:
+  nodered-ext:
+    build:
+      context: ./image-dc
+      dockerfile: node-red-ext.dockerfile
+      args:
+        - UID
+        - GID
+    image: com.coloranomaly.xyz/node-red-with-ext
+
+  lighttpd:
+    image: jojomi/lighttpd-static
+    volumes:
+      - $PWD/www:/var/www
+      - $PWD/configs/hivemq_config.js:/var/www/hivemq-mqtt-web-client/config.js
+      - $PWD/configs/simple_mqtt_config.js:/var/www/simple-mqtt-websocket-example/config.js
+    ports:
+      - "80:80"
+    links:
+      - mosquitto
+  mosquitto:
+    image: nazt/mosquitto:1.4.9
+    volumes:
+      - $PWD/configs/mosquitto.conf:/mosquitto/mosquitto.conf
+    ports:
+      - "9001:9001"
+      - "1883:1883"
+  nodered:
+    #image: nodered/node-red-docker
+    image: com.coloranomaly.xyz/node-red-with-ext
+    links:
+      - mosquitto
+    ports:
+      - "1880:1880"
